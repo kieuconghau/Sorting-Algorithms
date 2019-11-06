@@ -1,1 +1,13 @@
-# Sorting-Algorithms
+# Sorting Algorithms
+1. Selection sort
+2. Insertion sort
+3. Binary-Insertion sort
+4. Bubble sort
+5. Shaker sort
+6. Shell sort
+7. Heap sort
+8. Merge sort
+9. Quick sort
+10. Counting sort
+11. Radix sort
+12. Flash sort
