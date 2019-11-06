@@ -57,7 +57,7 @@ void CountingSort(vector<int>& a) {
 
 	// Put all elements of the array a to the array b in ascendingly sorted order.
 	vector<int> b(a.size());	// A temporary array
-	for (int i = b.size() - 1; i >= 0; --i) {
+	for (int i = b.size() - 1; i >= 0; --i) {	// A reversed for-loop for stability.
 		b[fr[a[i] - min] - 1] = a[i];	// Now, fr[a[i] - min] is the position p(x) of the LAST element with value i.
 										// fr[a[i] - min] - 1: index of the array is started from 0 (position is started from 1).
 		--fr[a[i] - min];		// Decrease the position of this value by 1.
