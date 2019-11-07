@@ -7,7 +7,7 @@ vector<int> GenerateRandomData(int size) {
 	srand((unsigned int)time(NULL));
 	
 	for (int i = 0; i < size; i++) {
-		a[i] = rand() % size;
+		a[i] = rand() % size - rand() % size;
 	}
 
 	return a;
