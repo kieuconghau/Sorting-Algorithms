@@ -1,5 +1,6 @@
 #include "DataGenerator.h"
 
+
 // Hàm phát sinh mảng dữ liệu ngẫu nhiên
 vector<int> GenerateRandomData(int size) {
 	vector<int> a(size);
@@ -8,6 +9,8 @@ vector<int> GenerateRandomData(int size) {
 	for (int i = 0; i < size; i++) {
 		a[i] = rand() % size;
 	}
+
+	return a;
 }
 
 // Hàm phát sinh mảng dữ liệu có thứ tự tăng dần
@@ -17,6 +20,8 @@ vector<int> GenerateSortedData(int size) {
 	for (int i = 0; i < size; i++) {
 		a[i] = i;
 	}
+
+	return a;
 }
 
 // Hàm phát sinh mảng dữ liệu có thứ tự ngược (giảm dần)
@@ -26,6 +31,8 @@ vector<int> GenerateReverseData(int size) {
 	for (int i = 0; i < size; i++) {
 		a[i] = size - 1 - i;
 	}
+
+	return a;
 }
 
 // Hàm phát sinh mảng dữ liệu gần như có thứ tự
@@ -42,6 +49,8 @@ vector<int> GenerateNearlySortedData(int size) {
 		int r2 = rand() % size;
 		swap(a[r1], a[r2]);
 	}
+
+	return a;
 }
 
 vector<int> GenerateData(int size, int data_type) {
@@ -57,6 +66,7 @@ vector<int> GenerateData(int size, int data_type) {
 		return GenerateNearlySortedData(size);
 	default:
 		cout << "Error: unknown data type!" << endl;
+		throw;
 	}
 }
 
