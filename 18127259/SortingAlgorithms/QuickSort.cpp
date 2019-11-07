@@ -1,20 +1,26 @@
 #include "QuickSort.h"
 
-void QuickSort(vector<int>& a) {
+void QuickSort(vector<int>& a, bool random_mode) {
 	if (a.size() > 1) {
-		QuickSort(a, 0, a.size() - 1);
+		QuickSort(a, 0, a.size() - 1, random_mode);
 	}
 }
 
-void QuickSort(vector<int>& a, int left, int right) {
+void QuickSort(vector<int>& a, int left, int right, bool random_mode) {
 	if (left < right) {
-		int p = Partition(a, left, right);
-		QuickSort(a, left, p - 1);
-		QuickSort(a, p + 1, right);
+		int p = Partition(a, left, right, random_mode);
+		QuickSort(a, left, p - 1, random_mode);
+		QuickSort(a, p + 1, right, random_mode);
 	}
 }
 
-int Partition(vector<int>& a, int left, int right) {
+int Partition(vector<int>& a, int left, int right, bool random_mode) {
+	if (random_mode) {
+		srand((size_t)time(nullptr));
+		int random_index = rand() % (right - left + 1) + left;
+		swap(a[left], a[random_index]);
+	}
+
 	int pivot = a[left];
 	int i = left + 1;
 	int j = right;
