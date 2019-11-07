@@ -4,7 +4,7 @@
 // Hàm phát sinh mảng dữ liệu ngẫu nhiên
 vector<int> GenerateRandomData(int size) {
 	vector<int> a(size);
-	srand((unsigned int)time(NULL));
+	srand((size_t)time(nullptr));
 	
 	for (int i = 0; i < size; i++) {
 		a[i] = rand() % size - rand() % size;
@@ -43,7 +43,7 @@ vector<int> GenerateNearlySortedData(int size) {
 		a[i] = i;
 	}
 	
-	srand((unsigned int) time(NULL));
+	srand((size_t) time(nullptr));
 	for (int i = 0; i < 10; i ++) {
 		int r1 = rand() % size;
 		int r2 = rand() % size;
