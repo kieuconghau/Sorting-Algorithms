@@ -5,4 +5,6 @@
 using namespace std;
 
 
-bool isAscending(vector<int> a);
+bool IsAscending(vector<int> a);
+
+void Display(vector<int> a);
