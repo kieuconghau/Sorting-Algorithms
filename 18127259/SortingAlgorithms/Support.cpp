@@ -37,8 +37,10 @@ void ReportText(string file_name) {
 			for (int j = 0; j < data_size.size(); ++j) {
 				fout << " " << i + 1 << "." << j + 1 << ". " << data_size[j] << endl;
 
+				vector<int> original_arr = GenerateData(data_size[j], data_order[i].ID);
+
 				for (int k = 0; k < sorting_algorithm.size(); ++k) {
-					vector<int> a = GenerateData(data_size[j], data_order[i].ID);
+					vector<int> a = original_arr;
 
 					clock_t begin = clock();
 					sorting_algorithm[k].Sort(a);
@@ -95,8 +97,10 @@ void ReportCSV() {
 		for (int j = 0; j < data_size.size(); ++j) {
 			fout[i] << data_size[j];
 
+			vector<int> original_arr = GenerateData(data_size[j], data_order[i].ID);
+			
 			for (int k = 0; k < sorting_algorithm.size(); ++k) {
-				vector<int> a = GenerateData(data_size[j], data_order[i].ID);
+				vector<int> a = original_arr;
 
 				clock_t begin = clock();
 				sorting_algorithm[k].Sort(a);
