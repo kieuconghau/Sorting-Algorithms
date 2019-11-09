@@ -7,14 +7,18 @@ void FlashSort(vector<int>& a) {
 }
 
 void ClassifyByCountingSort(vector<int>& a) {
+	int const class_number = 0.1 * a.size();
+	
+	if (class_number == 0) {
+		return;
+	}
+	
 	int const min = *min_element(a.begin(), a.end());
 	int const max = *max_element(a.begin(), a.end());
 
 	if (min == max) {
 		return;
 	}
-
-	int const class_number = 0.1 * a.size();
 
 	vector<int> fre(class_number, 0);
 	for (int i = 0; i < a.size(); ++i) {
@@ -33,7 +37,7 @@ void ClassifyByCountingSort(vector<int>& a) {
 	a = b;
 }
 
-// Class ID is counted from 0
+// Class ID is counted from 0 to class_number - 1
 int Class(int number, int class_number, int min, int max) {
 	return ((double)number - min) / ((double)max - min) * ((double)class_number - 1);
 }
