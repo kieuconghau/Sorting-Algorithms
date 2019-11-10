@@ -99,6 +99,8 @@ void ReportCSV() {
 	for (int i = 0; i < data_order.size(); ++i) {
 		fout[i] << data_order[i].Name << ",Run time in miliseconds,Input size" << endl;
 
+		cout << i + 1 << ". " << data_order[i].Name << endl;
+
 		for (int k = 0; k < sorting_algorithm.size(); ++k) {
 			fout[i] << "," << sorting_algorithm[k].Name;
 		}
@@ -106,6 +108,8 @@ void ReportCSV() {
 
 		for (int j = 0; j < data_size.size(); ++j) {
 			fout[i] << data_size[j];
+
+			cout << " " << i + 1 << "." << j + 1 << ". " << data_size[j] << endl;
 
 			int* original_arr = new int[data_size[j]];
 			GenerateData(original_arr, data_size[j], data_order[i].ID);
@@ -125,6 +129,14 @@ void ReportCSV() {
 				fout[i] << ",";
 				if (IsAscending(a, data_size[j])) {
 					 fout[i] << time_span.count() * 1000; // Miliseconds
+				}
+
+				cout << "  " << i + 1 << "." << j + 1 << "." << k + 1 << ". " << sorting_algorithm[k].Name << ": ";
+				if (IsAscending(a, data_size[j])) {
+					cout << time_span.count() * 1000 << endl;	// Miliseconds
+				}
+				else {
+					cout << "WRONG" << endl;
 				}
 
 				delete[] a;
