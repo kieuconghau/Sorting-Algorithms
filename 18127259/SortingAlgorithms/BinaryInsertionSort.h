@@ -1,10 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
+void BinaryInsertionSort(int* a, int n);
 
-void BinaryInsertionSort(vector<int>& a);
-
-int BinarySearch(vector<int> a, int key, int left, int right);
+int BinarySearch(int* a, int key, int left, int right);

@@ -1,0 +1,4 @@
+REVERSE DATA,Run time in miliseconds,Input size
+,Selection sort,Insertion sort,Binary insertion sort,Bubble sort,Shaker sort,Shell sort,Heap sort,Merge sort,Quick sort,Counting sort,Radix sort,Flash sort
+1000,1.6696,2.2055,1.5262,58.2364,69.7219,25.9586,0.7881,0.8254,0.4421,0.1419,0.7377,0.2036
+3000,13.9575,18.4556,16.3366,507.771,376.627,175.155,2.6799,2.4228,1.38,0.3944,2.7763,0.5779

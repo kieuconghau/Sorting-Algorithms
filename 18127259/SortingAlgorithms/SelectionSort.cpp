@@ -1,18 +1,20 @@
 #include "SelectionSort.h"
 
-void SelectionSort(vector<int>& a) {
-	vector<int>::iterator min;
+void SelectionSort(int* a, int n) {
+	int min;
+	int min_index;
 
-	for (vector<int>::iterator i = a.begin(); i != a.end() - 1; ++i) {
-		min = i;	// Select i as the minimum value (till i = a.end() - 1)
+	for (int i = 0; i < n - 1; ++i) {
+		min = a[i];
+		min_index = i;
 
-		// Find the minimum value in the remaning part of this array (from i + 1 to end)
-		for (vector<int>::iterator j = i + 1; j != a.end(); ++j) {
-			if (*j < *min) {
-				min = j;
+		for (int j = i + 1; j < n; ++j) {
+			if (a[j] < min) {
+				min = a[j];
+				min_index = j;
 			}
 		}
 
-		swap(*min, *i);		// Exchange the minimum value which we have found above with the value at i.
+		swap(a[min_index], a[i]);
 	}
 }

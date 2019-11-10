@@ -43,32 +43,38 @@
 
 */
 
-void RadixSort(vector<int>& a) {
+void RadixSort(int* a, int n) {
 	// Find the minimum value and the maximum value in array a.
-	int min = *min_element(a.begin(), a.end());
-	int max = *max_element(a.begin(), a.end());
+	int min = *min_element(a, a + n);
+	int max = *max_element(a, a + n);
 
 	// Use the "Counting sort" technique to sort the array a in k times,
 	// with k is the number of digits of max value in array a.
 	for (int exp = 0; (max - min) / int(pow(10, exp)) != 0; ++exp) {
 		// Caculate FREQUENCY of { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }
-		vector<int> fr(10, 0);
-		for (int i = 0; i < a.size(); ++i) {
+		int* fr = new int[10]();
+		for (int i = 0; i < n; ++i) {
 			++fr[((a[i] - min) / int(pow(10, exp))) % 10];
 		}
 
 		// Caculate the position of the LAST element with digit i in the final sorted array.
-		for (int i = 1; i < fr.size(); ++i) {
+		for (int i = 1; i < 10; ++i) {
 			fr[i] += fr[i - 1];
 		}
 
 		// Put all elements of the array a to the array b in ascendingly-sorted-digit order.
-		vector<int> b(a.size());
-		for (int i = b.size() - 1; i >= 0; --i) {	// A reversed for-loop for stability.
+		int* b = new int[n];
+		for (int i = n - 1; i >= 0; --i) {	// A reversed for-loop for stability.
 			b[--fr[((a[i] - min) / int(pow(10, exp))) % 10]] = a[i];
 		}
 
-		a = b;
+		for (int i = 0; i < n; ++i) {
+			a[i] = b[i];
+		}
+
+		delete[] b;
+		delete[] fr;
 	}
 }
+
 

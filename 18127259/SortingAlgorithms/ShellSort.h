@@ -4,5 +4,5 @@
 #include <vector>
 using namespace std;
 
+void ShellSort(int* a, int n);
 
-void ShellSort(vector<int>& a);

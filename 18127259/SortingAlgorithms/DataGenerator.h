@@ -2,16 +2,15 @@
 
 #include <iostream>
 #include <time.h>
-#include <vector>
 using namespace std;
 
-vector<int> GenerateRandomData(int size);
+void GenerateRandomData(int* a, int n);
 
-vector<int> GenerateSortedData(int size);
+void GenerateSortedData(int* a, int n);
 
-vector<int> GenerateReverseData(int size);
+void GenerateReverseData(int* a, int n);
 
-vector<int> GenerateNearlySortedData(int size);
+void GenerateNearlySortedData(int* a, int n);
 
-vector<int> GenerateData(int size, int data_type);
+void GenerateData(int* a, int n, int data_type);
 

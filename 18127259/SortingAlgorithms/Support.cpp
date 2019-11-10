@@ -1,8 +1,8 @@
 #include "Support.h"
 
 // Check if an array is in ascending order.
-bool IsAscending(vector<int> a) {
-	for (int i = 1; i < a.size(); ++i) {
+bool IsAscending(int* a, int n) {
+	for (int i = 1; i < n; ++i) {
 		if (a[i] < a[i - 1]) {
 			return false;
 		}
@@ -11,8 +11,8 @@ bool IsAscending(vector<int> a) {
 }
 
 // Print an array.
-void Display(vector<int> a) {
-	for (int i = 0; i < a.size(); ++i) {
+void Display(int* a, int n) {
+	for (int i = 0; i < n; ++i) {
 		cout << " " << a[i];
 	}
 	cout << endl;
@@ -24,7 +24,7 @@ void ReportText(string file_name) {
 	if (fout.is_open()) {
 		vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "REVERSE DATA"}, {3, "NEARLY SORTED DATA"} };
 
-		vector<int> data_size = { 1000, 3000 };//10000, 30000, 100000 };
+		vector<int> data_size = { 1000, 3000, 10000, 30000, 100000 };
 
 		vector<SortingAlgorithm> sorting_algorithm = { {"Selection sort", SelectionSort}, {"Insertion sort", InsertionSort},
 			{"Binary insertion sort", BinaryInsertionSort}, {"Bubble sort", BubbleSort}, {"Shaker sort", ShakerSort},
@@ -37,24 +37,34 @@ void ReportText(string file_name) {
 			for (int j = 0; j < data_size.size(); ++j) {
 				fout << " " << i + 1 << "." << j + 1 << ". " << data_size[j] << endl;
 
-				vector<int> original_arr = GenerateData(data_size[j], data_order[i].ID);
+				int* original_arr = new int[data_size[j]];
+				GenerateData(original_arr, data_size[j], data_order[i].ID);
 
 				for (int k = 0; k < sorting_algorithm.size(); ++k) {
-					vector<int> a = original_arr;
+					int* a = new int[data_size[j]];
 
-					clock_t begin = clock();
-					sorting_algorithm[k].Sort(a);
-					clock_t end = clock();
-					double sort_time = ((double)end - begin) / CLOCKS_PER_SEC;
+					for (int i = 0; i < data_size[j]; ++i) {
+						a[i] = original_arr[i];
+					}
+
+					high_resolution_clock::time_point t1 = high_resolution_clock::now();
+					sorting_algorithm[k].Sort(a, data_size[j]);
+					high_resolution_clock::time_point t2 = high_resolution_clock::now();
+
+					duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 
 					fout << "  " << i + 1 << "." << j + 1 << "." << k + 1 << ". " << sorting_algorithm[k].Name << ": ";
-					if (IsAscending(a)) {
-						fout << sort_time << endl;
+					if (IsAscending(a, data_size[j])) {
+						fout << time_span.count() * 1000 << endl;	// Miliseconds
 					}
 					else {
 						fout << "WRONG" << endl;
 					}
+
+					delete[] a;
 				}
+
+				delete[] original_arr;
 			}
 
 			fout << endl;
@@ -67,7 +77,7 @@ void ReportText(string file_name) {
 void ReportCSV() {
 	vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "REVERSE DATA"}, {3, "NEARLY SORTED DATA"} };
 
-	vector<int> data_size = { 1000, 3000 };//10000, 30000, 100000 };
+	vector<int> data_size = { 1000, 3000, 10000, 30000, 100000};
 
 	vector<SortingAlgorithm> sorting_algorithm = { {"Selection sort", SelectionSort}, {"Insertion sort", InsertionSort},
 		{"Binary insertion sort", BinaryInsertionSort}, {"Bubble sort", BubbleSort}, {"Shaker sort", ShakerSort},
@@ -87,7 +97,7 @@ void ReportCSV() {
 	}
 
 	for (int i = 0; i < data_order.size(); ++i) {
-		fout[i] << data_order[i].Name << ",Run time in seconds,Input size" << endl;
+		fout[i] << data_order[i].Name << ",Run time in miliseconds,Input size" << endl;
 
 		for (int k = 0; k < sorting_algorithm.size(); ++k) {
 			fout[i] << "," << sorting_algorithm[k].Name;
@@ -97,22 +107,32 @@ void ReportCSV() {
 		for (int j = 0; j < data_size.size(); ++j) {
 			fout[i] << data_size[j];
 
-			vector<int> original_arr = GenerateData(data_size[j], data_order[i].ID);
+			int* original_arr = new int[data_size[j]];
+			GenerateData(original_arr, data_size[j], data_order[i].ID);
 			
 			for (int k = 0; k < sorting_algorithm.size(); ++k) {
-				vector<int> a = original_arr;
+				int* a = new int[data_size[j]];
 
-				clock_t begin = clock();
-				sorting_algorithm[k].Sort(a);
-				clock_t end = clock();
-				double sort_time = ((double)end - begin) / CLOCKS_PER_SEC;
-
-				if (IsAscending(a)) {
-					fout[i] << "," << sort_time;
+				for (int i = 0; i < data_size[j]; ++i) {
+					a[i] = original_arr[i];
 				}
+
+				high_resolution_clock::time_point t1 = high_resolution_clock::now();
+				sorting_algorithm[k].Sort(a, data_size[j]);
+				high_resolution_clock::time_point t2 = high_resolution_clock::now();
+				duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+				
+				fout[i] << ",";
+				if (IsAscending(a, data_size[j])) {
+					 fout[i] << time_span.count() * 1000; // Miliseconds
+				}
+
+				delete[] a;
 			}
 
 			fout[i] << endl;
+
+			delete[] original_arr;
 		}
 	}
 

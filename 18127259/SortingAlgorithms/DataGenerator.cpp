@@ -2,68 +2,58 @@
 
 
 // Hàm phát sinh mảng dữ liệu ngẫu nhiên
-vector<int> GenerateRandomData(int size) {
-	vector<int> a(size);
+void GenerateRandomData(int* a, int n) {
 	srand((size_t)time(nullptr));
 	
-	for (int i = 0; i < size; i++) {
-		a[i] = rand() % size - rand() % size;
+	for (int i = 0; i < n; i++) {
+		a[i] = rand() % n - rand() % n;
 	}
-
-	return a;
 }
 
 // Hàm phát sinh mảng dữ liệu có thứ tự tăng dần
-vector<int> GenerateSortedData(int size) {
-	vector<int> a(size);
-
-	for (int i = 0; i < size; i++) {
+void GenerateSortedData(int* a, int n) {
+	for (int i = 0; i < n; i++) {
 		a[i] = i;
 	}
-
-	return a;
 }
 
 // Hàm phát sinh mảng dữ liệu có thứ tự ngược (giảm dần)
-vector<int> GenerateReverseData(int size) {
-	vector<int> a(size);
-	
-	for (int i = 0; i < size; i++) {
-		a[i] = size - 1 - i;
+void GenerateReverseData(int* a, int n) {
+	for (int i = 0; i < n; i++) {
+		a[i] = n - 1 - i;
 	}
-
-	return a;
 }
 
 // Hàm phát sinh mảng dữ liệu gần như có thứ tự
-vector<int> GenerateNearlySortedData(int size) {
-	vector<int> a(size);
-
-	for (int i = 0; i < size; i++) {
+void GenerateNearlySortedData(int* a, int n) {
+	for (int i = 0; i < n; i++) {
 		a[i] = i;
 	}
 	
-	srand((size_t) time(nullptr));
+	srand((size_t)time(nullptr));
+
 	for (int i = 0; i < 10; i ++) {
-		int r1 = rand() % size;
-		int r2 = rand() % size;
+		int r1 = rand() % n;
+		int r2 = rand() % n;
 		swap(a[r1], a[r2]);
 	}
-
-	return a;
 }
 
-vector<int> GenerateData(int size, int data_type) {
+void GenerateData(int* a, int n, int data_type) {
 	switch (data_type)
 	{
 	case 0:	// ngẫu nhiên
-		return GenerateRandomData(size);
+		GenerateRandomData(a, n);
+		break;
 	case 1:	// có thứ tự
-		return GenerateSortedData(size);
+		GenerateSortedData(a, n);
+		break;
 	case 2:	// có thứ tự ngược
-		return GenerateReverseData(size);
+		GenerateReverseData(a, n);
+		break;
 	case 3:	// gần như có thứ tự
-		return GenerateNearlySortedData(size);
+		GenerateNearlySortedData(a, n);
+		break;
 	default:
 		cout << "Error: unknown data type!" << endl;
 		throw;

@@ -1,11 +1,11 @@
 #include "BinaryInsertionSort.h"
 
-void BinaryInsertionSort(vector<int>& a) {
+void BinaryInsertionSort(int* a, int n) {
 	int temp;
 	int j;
 	int k;
 
-	for (int i = 1; i < a.size(); ++i) {
+	for (int i = 1; i < n; ++i) {
 		temp = a[i];
 		k = BinarySearch(a, temp, 0, i - 1);
 		
@@ -17,7 +17,7 @@ void BinaryInsertionSort(vector<int>& a) {
 	}
 }
 
-int BinarySearch(vector<int> a, int key, int left, int right) {
+int BinarySearch(int* a, int key, int left, int right) {
 	while (left < right) {
 		int mid = left + (right - left) / 2;
 

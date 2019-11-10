@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
+void ShakerSort(int* a, int n);
 
-void ShakerSort(vector<int>& a);
+

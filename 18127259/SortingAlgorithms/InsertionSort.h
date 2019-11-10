@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
+void InsertionSort(int* a, int n);
 
-void InsertionSort(vector<int>& a);
+

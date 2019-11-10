@@ -1,0 +1,4 @@
+SORTED DATA,Run time in miliseconds,Input size
+,Selection sort,Insertion sort,Binary insertion sort,Bubble sort,Shaker sort,Shell sort,Heap sort,Merge sort,Quick sort,Counting sort,Radix sort,Flash sort
+1000,1.5192,0.0047,0.0704,1.5797,1.5174,0.4727,0.8876,0.8355,0.3528,0.2267,2.9412,0.3248
+3000,22.5357,0.0167,0.2951,20.8613,16.0702,1.9583,4.8908,3.7431,1.2153,0.4675,4.1009,0.659

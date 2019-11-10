@@ -39,29 +39,36 @@
 		a = { -4, -2, -2, 1, 5, 5, 5 }
 */
 
-void CountingSort(vector<int>& a) {
+void CountingSort(int* a, int n) {
 	// Find the minimum value and the maximum value of the array.
-	int min = *min_element(a.begin(), a.end());
-	int max = *max_element(a.begin(), a.end());
+	int min = *min_element(a, a + n);
+	int max = *max_element(a, a + n);
 
 	// Caculate FREQUENCY f(x) with x is each of all distinct values in that array.
-	vector<int> fr(max - min + 1, 0);
-	for (int i = 0; i < a.size(); ++i) {
+	int fr_size = max - min + 1;
+	int* fr = new int[fr_size]();	// Allocate with 0s
+	for (int i = 0; i < n; ++i) {
 		++fr[a[i] - min];		// a[i] - min: the value is started from 0 to max - min.
 	}
 
 	// Caculate the position p(x) of the LAST element with x is each of all distinct values in that array.
-	for (int i = 1; i < fr.size(); ++i) {
+	for (int i = 1; i < fr_size; ++i) {
 		fr[i] += fr[i - 1];
 	}
 
 	// Put all elements of the array a to the array b in ascendingly sorted order.
-	vector<int> b(a.size());	// A temporary array
-	for (int i = b.size() - 1; i >= 0; --i) {	// A reversed for-loop for stability.
+	int* b = new int[n];	// A temporary array
+	for (int i = n - 1; i >= 0; --i) {	// A reversed for-loop for stability.
 		b[fr[a[i] - min] - 1] = a[i];	// Now, fr[a[i] - min] is the position p(x) of the LAST element with value i.
 										// fr[a[i] - min] - 1: index of the array is started from 0 (position is started from 1).
 		--fr[a[i] - min];		// Decrease the position of this value by 1.
 	}
 
-	a = b;
+	for (int i = 0; i < n; ++i) {
+		a[i] = b[i];
+	}
+
+	delete[] b;
+	delete[] fr;
 }
+

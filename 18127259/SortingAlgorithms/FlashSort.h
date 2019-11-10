@@ -1,11 +1,11 @@
 #pragma once
+
 #include <iostream>
-#include <vector>
 #include <algorithm>
 using namespace std;
 
-void FlashSort(vector<int>& a);
+void FlashSort(int* a, int n);
 
-void ClassifyByCountingSort(vector<int>& a);
+void ClassifyByCountingSort(int* a, int n);
 
 int Class(int number, int class_number, int min, int max);

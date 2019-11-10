@@ -1,10 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
+void HeapSort(int* a, int n);
 
-void HeapSort(vector<int>& a);
-
-void SiftMax(vector<int>& a, int left, int right);
+void SiftMax(int* a, int left, int right);

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
+void BubbleSort(int* a, int n);
 
-void BubbleSort(vector<int>& a);
+

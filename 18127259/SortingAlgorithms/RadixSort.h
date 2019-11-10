@@ -1,8 +1,8 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 #include <algorithm>
 using namespace std;
 
-void RadixSort(vector<int>& a);
+void RadixSort(int* a, int n);
+

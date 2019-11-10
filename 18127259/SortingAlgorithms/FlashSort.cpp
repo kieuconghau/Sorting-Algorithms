@@ -1,40 +1,45 @@
 #include "FlashSort.h"
 #include "InsertionSort.h"
 
-void FlashSort(vector<int>& a) {
-	ClassifyByCountingSort(a);	// Sort this array to be nearly sorted.
-	InsertionSort(a);			// This algorithm is very powerful if an array is NEARLY SORTED.
+void FlashSort(int* a, int n) {
+	ClassifyByCountingSort(a, n);	// Sort this array to be nearly sorted.
+	InsertionSort(a, n);			// This algorithm is very powerful if an array is NEARLY SORTED.
 }
 
-void ClassifyByCountingSort(vector<int>& a) {
-	int const class_number = 0.1 * a.size();
+void ClassifyByCountingSort(int* a, int n) {
+	int const class_number = 0.1 * n;
 	
 	if (class_number == 0) {
 		return;
 	}
 	
-	int const min = *min_element(a.begin(), a.end());
-	int const max = *max_element(a.begin(), a.end());
+	int const min = *min_element(a, a + n);
+	int const max = *max_element(a, a + n);
 
 	if (min == max) {
 		return;
 	}
 
-	vector<int> fre(class_number, 0);
-	for (int i = 0; i < a.size(); ++i) {
+	int* fre = new int[class_number]();
+	for (int i = 0; i < n; ++i) {
 		++fre[Class(a[i], class_number, min, max)];
 	}
 
-	for (int i = 1; i < fre.size(); ++i) {
+	for (int i = 1; i < class_number; ++i) {
 		fre[i] += fre[i - 1];
 	}
 
-	vector<int> b(a.size());
-	for (int i = b.size() - 1; i >= 0; --i) {
+	int* b = new int[n];
+	for (int i = n - 1; i >= 0; --i) {
 		b[--fre[Class(a[i], class_number, min, max)]] = a[i];
 	}
 
-	a = b;
+	for (int i = 0; i < n; ++i) {
+		a[i] = b[i];
+	}
+
+	delete[] b;
+	delete[] fre;
 }
 
 // Class ID is counted from 0 to class_number - 1

@@ -4,6 +4,8 @@
 #include "DataGenerator.h"
 #include <fstream>
 #include <string>
+#include <chrono>
+using namespace std::chrono;
 
 struct DataOrder {
 	int ID;
@@ -12,13 +14,15 @@ struct DataOrder {
 
 struct SortingAlgorithm {
 	string Name;
-	void(*Sort) (vector<int>&);
+	void(*Sort) (int*, int);
 };
 
-bool IsAscending(vector<int> a);
+bool IsAscending(int* a, int n);
 
-void Display(vector<int> a);
+void Display(int* a, int n);
 
 void ReportText(string file_name);
 
 void ReportCSV();
+
+

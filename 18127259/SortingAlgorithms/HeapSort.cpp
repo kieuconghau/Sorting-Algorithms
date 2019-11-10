@@ -1,22 +1,22 @@
 #include "HeapSort.h"
 
-void HeapSort(vector<int>& a) {
-	// Build a heap ([(a.size() - 2) / 2 + 1 , a.size() - 1] is A NATURAL HEAP)
-	for (int i = (a.size() - 2) / 2; i >= 0; --i) {
-		SiftMax(a, i, a.size() - 1);
+void HeapSort(int* a, int n) {
+	// Build a heap ([(n - 2) / 2 + 1 , n - 1] is A NATURAL HEAP)
+	for (int i = (n - 2) / 2; i >= 0; --i) {
+		SiftMax(a, i, n - 1);
 	}
 
-	int right = a.size() - 1;
+	int right = n - 1;
 	while (right > 0) {
-		swap(a[0], a[right]);	// Exchange the maximum value at the top of the max heap
-								// with the last value of the current heap.
-		--right;				// Decrease the size of this heap.
+		swap(a[0], a[right]);		// Exchange the maximum value at the top of the max heap
+									// with the last value of the current heap.
+		--right;					// Decrease the size of this heap.
 		SiftMax(a, 0, right);	// Build a max heap again till the size of this heap is 1.
 	}
 }
 
 // Build max heap (The maximum value is at index 0 - at the top of the heap)
-void SiftMax(vector<int>& a, int left, int right) {
+void SiftMax(int* a, int left, int right) {
 	int i = left;
 	int j = 2 * i + 1;
 

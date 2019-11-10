@@ -1,12 +1,12 @@
 #include "QuickSort.h"
 
-void QuickSort(vector<int>& a) {
-	if (a.size() > 1) {
-		QuickSort(a, 0, a.size() - 1);
+void QuickSort(int* a, int n) {
+	if (n > 1) {
+		QuickSort(a, 0, n - 1);
 	}
 }
 
-void QuickSort(vector<int>& a, int left, int right) {
+void QuickSort(int* a, int left, int right) {
 	if (left < right) {
 		int p = Partition(a, left, right);
 		QuickSort(a, left, p - 1);
@@ -14,7 +14,7 @@ void QuickSort(vector<int>& a, int left, int right) {
 	}
 }
 
-int Partition(vector<int>& a, int left, int right) {
+int Partition(int* a, int left, int right) {
 	srand((size_t)time(nullptr));
 	int random_index = rand() % (right - left + 1) + left;
 	swap(a[left], a[random_index]);

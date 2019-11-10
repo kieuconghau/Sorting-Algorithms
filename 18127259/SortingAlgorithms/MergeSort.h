@@ -1,11 +1,10 @@
 #pragma once
 
 #include <iostream>
-#include <vector>
 using namespace std;
 
-void MergeSort(vector<int>& a);
+void MergeSort(int* a, int n);
 
-void MergeSort(vector<int>& a, int left, int right);
+void MergeSort(int* a, int left, int right);
 
-void Merge(vector<int>& a, int left, int mid, int right);
+void Merge(int* a, int left, int mid, int right);
