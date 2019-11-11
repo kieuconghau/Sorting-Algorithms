@@ -48,11 +48,11 @@ void GenerateData(int* a, int n, int data_type) {
 	case 1:	// có thứ tự
 		GenerateSortedData(a, n);
 		break;
-	case 2:	// có thứ tự ngược
-		GenerateReverseData(a, n);
-		break;
-	case 3:	// gần như có thứ tự
+	case 2:	// gần như có thứ tự
 		GenerateNearlySortedData(a, n);
+		break;
+	case 3:	// có thứ tự ngược
+		GenerateReverseData(a, n);
 		break;
 	default:
 		cout << "Error: unknown data type!" << endl;
