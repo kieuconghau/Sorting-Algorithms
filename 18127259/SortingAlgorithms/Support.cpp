@@ -22,7 +22,7 @@ void ReportText(string file_name) {
 	ofstream fout(file_name);
 
 	if (fout.is_open()) {
-		vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "REVERSE DATA"}, {3, "NEARLY SORTED DATA"} };
+		vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "NEARLY SORTED DATA"}, {3, "REVERSE DATA"} };
 
 		vector<int> data_size = { 1000, 3000, 10000, 30000, 100000 };
 
@@ -31,11 +31,16 @@ void ReportText(string file_name) {
 			{"Shell sort", ShellSort}, {"Heap sort", HeapSort}, {"Merge sort", MergeSort}, {"Quick sort", QuickSort},
 			{"Counting sort", CountingSort}, {"Radix sort", RadixSort}, {"Flash sort", FlashSort} };
 
+
 		for (int i = 0; i < data_order.size(); ++i) {
 			fout << i + 1 << ". " << data_order[i].Name << endl;
 
+			cout << i + 1 << ". " << data_order[i].Name << endl;
+
 			for (int j = 0; j < data_size.size(); ++j) {
 				fout << " " << i + 1 << "." << j + 1 << ". " << data_size[j] << endl;
+
+				cout << " " << i + 1 << "." << j + 1 << ". " << data_size[j] << endl;
 
 				int* original_arr = new int[data_size[j]];
 				GenerateData(original_arr, data_size[j], data_order[i].ID);
@@ -61,6 +66,14 @@ void ReportText(string file_name) {
 						fout << "WRONG" << endl;
 					}
 
+					cout << "  " << i + 1 << "." << j + 1 << "." << k + 1 << ". " << sorting_algorithm[k].Name << ": ";
+					if (IsAscending(a, data_size[j])) {
+						cout << time_span.count() * 1000 << endl;	// Miliseconds
+					}
+					else {
+						cout << "WRONG" << endl;
+					}
+
 					delete[] a;
 				}
 
@@ -75,7 +88,7 @@ void ReportText(string file_name) {
 }
 
 void ReportCSV() {
-	vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "REVERSE DATA"}, {3, "NEARLY SORTED DATA"} };
+	vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "NEARLY SORTED DATA"}, {3, "REVERSE DATA"} };
 
 	vector<int> data_size = { 1000, 3000, 10000, 30000, 100000};
 
@@ -84,30 +97,27 @@ void ReportCSV() {
 		{"Shell sort", ShellSort}, {"Heap sort", HeapSort}, {"Merge sort", MergeSort}, {"Quick sort", QuickSort},
 		{"Counting sort", CountingSort}, {"Radix sort", RadixSort}, {"Flash sort", FlashSort} };
 	
-	vector<ofstream> fout(data_order.size());
-	for (int i = 0; i < data_order.size(); ++i) {
-		fout[i].open(to_string(i + 1) + ". " + data_order[i].Name + ".csv");
+	ofstream fout("Data.csv");
+
+	if (!fout.is_open()) {
+		cout << "\aCannot create a csv file." << endl;
+		return;
 	}
 
-	for (int i = 0; i < data_order.size(); ++i) {
-		if (!fout[i].is_open()) {
-			cout << "\aCannot create a csv file!" << endl;
-			return;
-		}
-	}
+	fout << "Run time in miliseconds,Input size" << endl;
 
 	for (int i = 0; i < data_order.size(); ++i) {
-		fout[i] << data_order[i].Name << ",Run time in miliseconds,Input size" << endl;
+		fout << endl << data_order[i].Name << endl;
 
 		cout << i + 1 << ". " << data_order[i].Name << endl;
 
 		for (int k = 0; k < sorting_algorithm.size(); ++k) {
-			fout[i] << "," << sorting_algorithm[k].Name;
+			fout << "," << sorting_algorithm[k].Name;
 		}
-		fout[i] << endl;
+		fout << endl;
 
 		for (int j = 0; j < data_size.size(); ++j) {
-			fout[i] << data_size[j];
+			fout << data_size[j];
 
 			cout << " " << i + 1 << "." << j + 1 << ". " << data_size[j] << endl;
 
@@ -126,9 +136,9 @@ void ReportCSV() {
 				high_resolution_clock::time_point t2 = high_resolution_clock::now();
 				duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
 				
-				fout[i] << ",";
+				fout << ",";
 				if (IsAscending(a, data_size[j])) {
-					 fout[i] << time_span.count() * 1000; // Miliseconds
+					 fout << time_span.count() * 1000; // Miliseconds
 				}
 
 				cout << "  " << i + 1 << "." << j + 1 << "." << k + 1 << ". " << sorting_algorithm[k].Name << ": ";
@@ -142,13 +152,13 @@ void ReportCSV() {
 				delete[] a;
 			}
 
-			fout[i] << endl;
+			fout << endl;
 
 			delete[] original_arr;
 		}
 	}
 
 	for (int i = 0; i < data_order.size(); ++i) {
-		fout[i].close();
+		fout.close();
 	}
 }

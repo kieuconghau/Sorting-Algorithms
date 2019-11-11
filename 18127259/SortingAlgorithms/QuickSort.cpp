@@ -15,9 +15,11 @@ void QuickSort(int* a, int left, int right) {
 }
 
 int Partition(int* a, int left, int right) {
-	srand((size_t)time(nullptr));
+	/*srand((size_t)time(nullptr));
 	int random_index = rand() % (right - left + 1) + left;
-	swap(a[left], a[random_index]);
+	swap(a[left], a[random_index]);*/
+
+	swap(a[left + (right - left) / 2], a[left]);
 
 	int pivot = a[left];
 	int i = left + 1;

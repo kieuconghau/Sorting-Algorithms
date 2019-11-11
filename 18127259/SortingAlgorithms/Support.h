@@ -3,6 +3,7 @@
 #include "AllSortingAlgorithms.h"
 #include "DataGenerator.h"
 #include <fstream>
+#include <vector>
 #include <string>
 #include <chrono>
 using namespace std::chrono;
