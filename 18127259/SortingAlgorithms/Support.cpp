@@ -87,7 +87,7 @@ void ReportText(string file_name) {
 	}
 }
 
-void ReportCSV() {
+void ReportCSV(string file_name) {
 	vector<DataOrder> data_order = { {0, "RANDOM DATA"}, {1, "SORTED DATA"}, {2, "NEARLY SORTED DATA"}, {3, "REVERSE DATA"} };
 
 	vector<int> data_size = { 1000, 3000, 10000, 30000, 100000};
@@ -97,7 +97,7 @@ void ReportCSV() {
 		{"Shell sort", ShellSort}, {"Heap sort", HeapSort}, {"Merge sort", MergeSort}, {"Quick sort", QuickSort},
 		{"Counting sort", CountingSort}, {"Radix sort", RadixSort}, {"Flash sort", FlashSort} };
 	
-	ofstream fout("Data.csv");
+	ofstream fout(file_name);
 
 	if (!fout.is_open()) {
 		cout << "\aCannot create a csv file." << endl;
