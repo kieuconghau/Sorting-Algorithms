@@ -2,22 +2,20 @@
 
 void ShellSort(int* a, int n) {
 	for (int gap = n / 2; gap >= 1; gap /= 2) {
-		for (int j = 0; j < gap; ++j) {
-			for (int k = gap; k < n; k += gap) {
-				int temp = a[k];
-				int p;
+		for (int k = gap; k < n; ++k) {
+			int temp = a[k];
+			int p;
 
-				for (p = k - gap; p >= 0; p -= gap) {
-					if (a[p] > temp) {
-						a[p + gap] = a[p];
-					}
-					else {
-						break;
-					}
+			for (p = k - gap; p >= 0; p -= gap) {
+				if (a[p] > temp) {
+					a[p + gap] = a[p];
 				}
-
-				a[p + gap] = temp;
+				else {
+					break;
+				}
 			}
+
+			a[p + gap] = temp;
 		}
 	}
 }
