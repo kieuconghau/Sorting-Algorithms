@@ -2,7 +2,7 @@
 
 int main() {
 	//ReportText("Report.txt");
-	ReportCSV();
+	ReportCSV("Data1.csv");
 
 	return 0;
 }
