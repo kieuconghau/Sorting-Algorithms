@@ -1,0 +1,48 @@
+1. RANDOM DATA
+ 1.1. 1000
+  1.1.1. Quick sort: 0.5554
+ 1.2. 3000
+  1.2.1. Quick sort: 2.1733
+ 1.3. 10000
+  1.3.1. Quick sort: 7.7669
+ 1.4. 30000
+  1.4.1. Quick sort: 25.584
+ 1.5. 100000
+  1.5.1. Quick sort: 58.4835
+
+2. SORTED DATA
+ 2.1. 1000
+  2.1.1. Quick sort: 0.1448
+ 2.2. 3000
+  2.2.1. Quick sort: 0.5151
+ 2.3. 10000
+  2.3.1. Quick sort: 1.6027
+ 2.4. 30000
+  2.4.1. Quick sort: 4.7278
+ 2.5. 100000
+  2.5.1. Quick sort: 20.8957
+
+3. NEARLY SORTED DATA
+ 3.1. 1000
+  3.1.1. Quick sort: 0.1392
+ 3.2. 3000
+  3.2.1. Quick sort: 0.6155
+ 3.3. 10000
+  3.3.1. Quick sort: 2.1445
+ 3.4. 30000
+  3.4.1. Quick sort: 4.9662
+ 3.5. 100000
+  3.5.1. Quick sort: 22.4058
+
+4. REVERSE DATA
+ 4.1. 1000
+  4.1.1. Quick sort: 0.4051
+ 4.2. 3000
+  4.2.1. Quick sort: 0.7722
+ 4.3. 10000
+  4.3.1. Quick sort: 2.4062
+ 4.4. 30000
+  4.4.1. Quick sort: 7.6308
+ 4.5. 100000
+  4.5.1. Quick sort: 29.3905
+

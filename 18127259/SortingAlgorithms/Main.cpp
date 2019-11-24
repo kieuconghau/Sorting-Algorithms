@@ -1,8 +1,8 @@
 #include "Support.h"
 
 int main() {
-	//ReportText("Report.txt");
-	ReportCSV("Data1.csv");
+	ReportText("Quick.txt");
+	//ReportCSV("Data2.csv");
 
 	return 0;
 }

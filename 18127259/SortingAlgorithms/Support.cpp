@@ -26,11 +26,12 @@ void ReportText(string file_name) {
 
 		vector<int> data_size = { 1000, 3000, 10000, 30000, 100000 };
 
-		vector<SortingAlgorithm> sorting_algorithm = { {"Selection sort", SelectionSort}, {"Insertion sort", InsertionSort},
+		/*vector<SortingAlgorithm> sorting_algorithm = { {"Selection sort", SelectionSort}, {"Insertion sort", InsertionSort},
 			{"Binary insertion sort", BinaryInsertionSort}, {"Bubble sort", BubbleSort}, {"Shaker sort", ShakerSort},
 			{"Shell sort", ShellSort}, {"Heap sort", HeapSort}, {"Merge sort", MergeSort}, {"Quick sort", QuickSort},
-			{"Counting sort", CountingSort}, {"Radix sort", RadixSort}, {"Flash sort", FlashSort} };
+			{"Counting sort", CountingSort}, {"Radix sort", RadixSort}, {"Flash sort", FlashSort} };*/
 
+		vector<SortingAlgorithm> sorting_algorithm = { {"Quick sort", QuickSort} };
 
 		for (int i = 0; i < data_order.size(); ++i) {
 			fout << i + 1 << ". " << data_order[i].Name << endl;
